@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap:VirtualizedContainerService.HintSize="1096,602" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap:VirtualizedContainerService.HintSize="1226,6408" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -29,6 +29,19 @@
       <x:String>System.Reflection</x:String>
       <x:String>System.Linq.Expressions</x:String>
       <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Services.RuntimeAnalyze</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -81,23 +94,843 @@
       <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="416,350" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1236,6343" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Location" />
+      <Variable x:TypeArguments="x:String" Name="BuyType" />
+      <Variable x:TypeArguments="x:String" Name="IsSelectAll" />
+      <Variable x:TypeArguments="x:String" Name="SpaceType" />
+      <Variable x:TypeArguments="x:String" Name="HomeType" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="354,262" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Enter City Name" Title="Get Location">
+    <ui:InputDialog Options="{x:Null}" OptionsString="{x:Null}" DisplayName="Get Location" sap:VirtualizedContainerService.HintSize="1174,275" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Enter City Name" Title="Get Location">
       <ui:InputDialog.Result>
         <OutArgument x:TypeArguments="x:String">
-          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">Location</CSharpReference>
+          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">
+            <CSharpReference.Result>
+              <OutArgument x:TypeArguments="Location(x:String)" />
+            </CSharpReference.Result>Location</CSharpReference>
         </OutArgument>
       </ui:InputDialog.Result>
     </ui:InputDialog>
+    <ui:InputDialog OptionsString="{x:Null}" DisplayName="Filter Home Type" sap:VirtualizedContainerService.HintSize="1174,329" sap2010:WorkflowViewState.IdRef="InputDialog_6" IsPassword="False" Label="Enter Home Type" Title="Home Type">
+      <ui:InputDialog.Options>
+        <InArgument x:TypeArguments="s:String[]">
+          <CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_28">
+            <CSharpValue.Result>
+              <OutArgument x:TypeArguments="s:String[]" />
+            </CSharpValue.Result>new string[] {"None", "All", "Houses", "Apartments/Condos/Co-ops", "Townhomes"};</CSharpValue>
+        </InArgument>
+      </ui:InputDialog.Options>
+      <ui:InputDialog.Result>
+        <OutArgument x:TypeArguments="x:String">
+          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_17">
+            <CSharpReference.Result>
+              <OutArgument x:TypeArguments="Location(x:String)" />
+            </CSharpReference.Result>HomeType</CSharpReference>
+        </OutArgument>
+      </ui:InputDialog.Result>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InputDialog>
+    <ui:InputDialog OptionsString="{x:Null}" DisplayName="Filter Space" sap:VirtualizedContainerService.HintSize="1174,329" sap2010:WorkflowViewState.IdRef="InputDialog_7" IsPassword="False" Label="Enter Space" Title="Space">
+      <ui:InputDialog.Options>
+        <InArgument x:TypeArguments="s:String[]">
+          <CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_29">
+            <CSharpValue.Result>
+              <OutArgument x:TypeArguments="s:String[]" />
+            </CSharpValue.Result>new string[] {"None", "All", "Entire place", "Room"};</CSharpValue>
+        </InArgument>
+      </ui:InputDialog.Options>
+      <ui:InputDialog.Result>
+        <OutArgument x:TypeArguments="x:String">
+          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_18">
+            <CSharpReference.Result>
+              <OutArgument x:TypeArguments="Location(x:String)" />
+            </CSharpReference.Result>SpaceType</CSharpReference>
+        </OutArgument>
+      </ui:InputDialog.Result>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:InputDialog>
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Zillow: Home Page" sap:VirtualizedContainerService.HintSize="1174,5322" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InUiElement="{x:Null}" InteractionMode="DebuggerApi" IsIncognito="{x:Null}" OpenMode="IfNotOpen" OutUiElement="{x:Null}" ScopeGuid="eae61969-f1b5-4a97-bfaf-19e69d9bf1dc" UserDataFolderMode="{x:Null}" UserDataFolderPath="{x:Null}" Version="V2" WebDriverMode="{x:Null}">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Zillow Home Page" sap:VirtualizedContainerService.HintSize="1140,5081" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NTypeInto ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickBeforeMode="Single" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DeselectAfter="{x:Null}" DisplayName="Type Name City" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="1078,288" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="Simulate" OutUiElement="{x:Null}" ScopeIdentifier="eae61969-f1b5-4a97-bfaf-19e69d9bf1dc" SecureText="{x:Null}" Timeout="{x:Null}" Version="V4">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.zillow.com/" CVScreenId="3825cb2c-0bcf-41a7-b865-9965d56008ff" CvElementArea="374, 448, 484, 77" CvType="InputBox" DesignTimeRectangle="377, 450, 402, 72" DesignTimeScaleFactor="1" ElementType="InputBox" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' class='StyledFormControl-c11n-8-104-2__sc-w61kvv-0 geFgrQ Input-c11n-8-104-2__sc-4ry0fw-0 bnWsfP' placeholder='Enter an address, neighborhood, city, or ZIP code' aaname='clear search text buttonSubmit Search' /&gt;" Guid="88ced1c9-8432-4e6a-95ad-3528ffebd42e" InformativeScreenshot="3a19791ef9e96a8285ed333cefad8d01.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Zillow: Real Estate, Apartments, Mortgages &amp;amp; Home Values' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target DesignTimeRectangle="779, 450, 77, 72" ElementType="Text" FuzzySelectorArgument="&lt;webctrl tag='LABEL' type='' class='StyledAdornment-c11n-8-104-2__sc-1h2m3pa-0 AdornmentRight-c11n-8-104-2__sc-46k37c-0 dRbJUB pMHSs SearchBoxInput__StyledSearchBoxAdornment-sxp-sb-8-104-2__sc-1hknwe6-0 fnLYdy' aaname='' check:innerText='Submit Search' /&gt;" Guid="73292298-9103-459b-bc0a-a927dd86457a" SearchSteps="FuzzySelector" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+              <uix:NTypeInto.Text>
+                <InArgument x:TypeArguments="x:String">
+                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">
+                    <CSharpValue.Result>
+                      <OutArgument x:TypeArguments="x:String" />
+                    </CSharpValue.Result>Location</CSharpValue>
+                </InArgument>
+              </uix:NTypeInto.Text>
+              <uix:NTypeInto.VerifyOptions>
+                <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                  <uix:VerifyExecutionTypeIntoOptions.Retry>
+                    <InArgument x:TypeArguments="x:Boolean" />
+                  </uix:VerifyExecutionTypeIntoOptions.Retry>
+                  <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                    <InArgument x:TypeArguments="x:Double" />
+                  </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                </uix:VerifyExecutionTypeIntoOptions>
+              </uix:NTypeInto.VerifyOptions>
+            </uix:NTypeInto>
+            <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click Search" sap:VirtualizedContainerService.HintSize="1078,227" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="eae61969-f1b5-4a97-bfaf-19e69d9bf1dc" Timeout="{x:Null}" Version="V4">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.zillow.com/" DesignTimeRectangle="784, 450, 72, 72" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='submit' class='StyledIconButton-c11n-8-104-2__sc-lagec-0 dFokWX SearchBoxInput__StyledSearchBoxButton-sxp-sb-8-104-2__sc-1hknwe6-2 loSsXZ' aaname='Submit Search' check:innerText='Submit Search' /&gt;" Guid="32f9cd8c-28c7-43c1-836e-77e21b6a14a9" InformativeScreenshot="6b8544519e5a991b5445717ae346f31c.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Zillow: Real Estate, Apartments, Mortgages &amp;amp; Home Values' /&gt;" SearchSteps="FuzzySelector" Version="V4" Visibility="Interactive" />
+              </uix:NClick.Target>
+              <uix:NClick.VerifyOptions>
+                <uix:VerifyExecutionOptions DisplayName="Button 'Submit Search'" Mode="Appears">
+                  <uix:VerifyExecutionOptions.Retry>
+                    <InArgument x:TypeArguments="x:Boolean" />
+                  </uix:VerifyExecutionOptions.Retry>
+                  <uix:VerifyExecutionOptions.Target>
+                    <uix:TargetAnchorable BrowserURL="https://www.zillow.com/" DesignTimeRectangle="784, 450, 72, 72" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='submit' class='StyledIconButton-c11n-8-104-2__sc-lagec-0 dmjnZZ' aaname='Submit Search' check:innerText='Submit Search' /&gt;" Guid="0e085b03-41d6-4be8-8049-15a4e67077b8" InformativeScreenshot="9f099a361d4f2a9105589df173775483.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Zillow: Real Estate, Apartments, Mortgages &amp;amp; Home Values' /&gt;" SearchSteps="FuzzySelector" Version="V4" Visibility="Interactive" />
+                  </uix:VerifyExecutionOptions.Target>
+                  <uix:VerifyExecutionOptions.Timeout>
+                    <InArgument x:TypeArguments="x:Double" />
+                  </uix:VerifyExecutionOptions.Timeout>
+                </uix:VerifyExecutionOptions>
+              </uix:NClick.VerifyOptions>
+            </uix:NClick>
+            <uix:NCheckState ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Check Question Popup" Exists="{x:Null}" sap:VirtualizedContainerService.HintSize="1078,1346" sap2010:WorkflowViewState.IdRef="NCheckState_1" OutUiElement="{x:Null}" Result="{x:Null}" ScopeIdentifier="eae61969-f1b5-4a97-bfaf-19e69d9bf1dc" Timeout="{x:Null}" Version="V4">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="If Show" sap:VirtualizedContainerService.HintSize="512,664" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If sap:VirtualizedContainerService.HintSize="450,574" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">
+                          <CSharpValue.Result>
+                            <OutArgument x:TypeArguments="x:Boolean" />
+                          </CSharpValue.Result>BuyType.Equals("Sale")</CSharpValue>
+                      </InArgument>
+                    </If.Condition>
+                    <If.Then>
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,104" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,306" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click Rent" sap:VirtualizedContainerService.HintSize="354,218" sap2010:WorkflowViewState.IdRef="NClick_3" InUiElement="{x:Null}" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="eae61969-f1b5-4a97-bfaf-19e69d9bf1dc" Timeout="{x:Null}" Version="V4">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.zillow.com/" CVScreenId="ccbb38de-3434-43e1-a5e9-ab2cbd76f9a3" CvElementArea="865, 678, 206, 49" CvTextArea="937, 695, 63, 15" CvTextArgument="For rent" CvType="Button" DesignTimeRectangle="868, 681, 200, 44" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aaname='For rent' tag='BUTTON' type='' class='StyledButton-c11n-8-104-2__sc-iv7357-0 kmvtUr' check:innerText='For rent' /&gt;" Guid="9bdc6b8d-ae36-40fa-a3f9-d25d04538bba" InformativeScreenshot="653419187400e9f8f369740623fb7e1a.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Zillow: Real Estate, Apartments, Mortgages &amp;amp; Home Values' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                          </uix:NClick.Target>
+                          <uix:NClick.VerifyOptions>
+                            <uix:VerifyExecutionOptions DisplayName="Button 'For rent'" Mode="Appears">
+                              <uix:VerifyExecutionOptions.Retry>
+                                <InArgument x:TypeArguments="x:Boolean" />
+                              </uix:VerifyExecutionOptions.Retry>
+                              <uix:VerifyExecutionOptions.Target>
+                                <uix:TargetAnchorable BrowserURL="https://www.zillow.com/" CVScreenId="52b31d0c-7f9f-4bec-a89c-2d64a597246b" CvElementArea="865, 679, 206, 49" CvTextArea="937, 696, 62, 15" CvTextArgument="For rent" CvType="Button" DesignTimeRectangle="868, 682, 200, 44" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aaname='For rent' tag='BUTTON' type='' class='StyledButton-c11n-8-104-2__sc-iv7357-0 kmvtUr' check:innerText='For rent' /&gt;" Guid="a74f6d8e-1760-433e-9bc0-309a65f82706" InformativeScreenshot="02c20471327c5df97fe81f09f3be6095.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Zillow: Real Estate, Apartments, Mortgages &amp;amp; Home Values' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                              </uix:VerifyExecutionOptions.Target>
+                              <uix:VerifyExecutionOptions.Timeout>
+                                <InArgument x:TypeArguments="x:Double" />
+                              </uix:VerifyExecutionOptions.Timeout>
+                            </uix:VerifyExecutionOptions>
+                          </uix:NClick.VerifyOptions>
+                        </uix:NClick>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="If Hidden" sap:VirtualizedContainerService.HintSize="512,1095" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Zillow: listing" sap:VirtualizedContainerService.HintSize="450,1005" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InUiElement="{x:Null}" InteractionMode="DebuggerApi" IsIncognito="{x:Null}" OpenMode="IfNotOpen" OutUiElement="{x:Null}" ScopeGuid="a5867c8f-efa1-42d2-b4a7-c49f6c0c9f85" UserDataFolderMode="{x:Null}" UserDataFolderPath="{x:Null}" Version="V2" WebDriverMode="{x:Null}">
+                    <uix:NApplicationCard.Body>
+                      <ActivityAction x:TypeArguments="x:Object">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,762" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'For Rent'" sap:VirtualizedContainerService.HintSize="354,227" sap2010:WorkflowViewState.IdRef="NClick_27" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a5867c8f-efa1-42d2-b4a7-c49f6c0c9f85" Version="V4">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/ny_rb/" CVScreenId="c6533267-41c9-414a-b010-e8abff9b2c17" CvTextArea="643, 214, 61, 13" CvTextArgument="For Rent" CvType="Text" DesignTimeRectangle="632, 203, 106, 37" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl parentid='listing-type' tag='BUTTON' type='' class='StyledButton-c11n-8-102-0__sc-iv7357-0 eKiOZe DropdownButton-c11n-8-102-0__sc-1nhw8sf-0 dialog__StyledDropdownButton-srp-8-102-0__sc-fdndby-3 jslYgl jPflrw DropdownPopper-c11n-8-102-0__sc-u1wzgh-0 iRrNMo' aaname='For Rent' check:innerText='For Rent' /&gt;" Guid="68335a7a-5dcb-4402-8394-a390a09339e6" InformativeScreenshot="4444189dab9252a235252550805aec8a.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 36041 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                            </uix:NClick.Target>
+                            <uix:NClick.VerifyOptions>
+                              <uix:VerifyExecutionOptions DisplayName="Button 'For Rent'" Mode="Appears">
+                                <uix:VerifyExecutionOptions.Retry>
+                                  <InArgument x:TypeArguments="x:Boolean" />
+                                </uix:VerifyExecutionOptions.Retry>
+                                <uix:VerifyExecutionOptions.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/ny_rb/" CVScreenId="c6533267-41c9-414a-b010-e8abff9b2c17" CvTextArea="643, 214, 61, 13" CvTextArgument="For Rent" CvType="Text" DesignTimeRectangle="632, 203, 106, 37" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl parentid='listing-type' tag='BUTTON' type='' class='StyledButton-c11n-8-102-0__sc-iv7357-0 eKiOZe DropdownButton-c11n-8-102-0__sc-1nhw8sf-0 dialog__StyledDropdownButton-srp-8-102-0__sc-fdndby-3 jslYgl jPflrw DropdownPopper-c11n-8-102-0__sc-u1wzgh-0 iRrNMo' aaname='For Rent' check:innerText='For Rent' /&gt;" Guid="09885638-c2e9-42e6-a2f4-4f300a1d4ad2" InformativeScreenshot="85a5f19595526e685320e98ff209441f.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 36041 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                                </uix:VerifyExecutionOptions.Target>
+                                <uix:VerifyExecutionOptions.Timeout>
+                                  <InArgument x:TypeArguments="x:Double" />
+                                </uix:VerifyExecutionOptions.Timeout>
+                              </uix:VerifyExecutionOptions>
+                            </uix:NClick.VerifyOptions>
+                          </uix:NClick>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Rent" sap:VirtualizedContainerService.HintSize="354,227" sap2010:WorkflowViewState.IdRef="NClick_26" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="a5867c8f-efa1-42d2-b4a7-c49f6c0c9f85" Version="V4">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/NY_rb/" CVScreenId="caa886a8-9b83-4b5c-a8a5-b8088e8f916b" CvElementArea="645, 327, 25, 26" CvType="RadioButton" DesignTimeRectangle="648, 330, 20, 20" DesignTimeScaleFactor="1" ElementType="RadioButton" FullSelectorArgument="&lt;webctrl id='isForRent' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='isForRent' tag='INPUT' type='radio' class='StyledFormControl-c11n-8-102-0__sc-w61kvv-0 kZEWJE Radio-c11n-8-102-0__sc-yicu80-0 CategoryRadioButton__StyledRadio-srp-8-102-0__sc-jtaiy8-3 Jbjxv chQtXo' aaname='For Rent' /&gt;" Guid="c9db1a14-65ec-4fd0-bd35-877fad715e7d" InformativeScreenshot="74168b2ee59d1c90a0b44a0971ddf876.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='NY Real Estate - New York Homes For Sale | Zillow' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target CVScreenId="caa886a8-9b83-4b5c-a8a5-b8088e8f916b" CvTextArea="684, 332, 72, 16" CvTextArgument="For Rent" CvType="Text" DesignTimeRectangle="668, 313, 256, 55" ElementType="Text" FuzzySelectorArgument="&lt;webctrl type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY CategoryRadioButton__StyledLabel-srp-8-102-0__sc-jtaiy8-2 krxcWp' tag='LABEL' aaname='' check:innerText='For Rent' /&gt;" Guid="abcbb288-e6e1-4558-9cb2-5a0c540d1a15" SearchSteps="FuzzySelector, CV" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NClick.Target>
+                            <uix:NClick.VerifyOptions>
+                              <uix:VerifyExecutionOptions DisplayName="Radio button 'For Rent'" Mode="Appears">
+                                <uix:VerifyExecutionOptions.Retry>
+                                  <InArgument x:TypeArguments="x:Boolean" />
+                                </uix:VerifyExecutionOptions.Retry>
+                                <uix:VerifyExecutionOptions.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/for_sale/ny_rb/" CVScreenId="0e514a95-b0e6-4a05-a7c2-dfa9473e8166" CvElementArea="349, 327, 25, 26" CvType="RadioButton" DesignTimeRectangle="352, 330, 20, 20" DesignTimeScaleFactor="1" ElementType="RadioButton" FuzzySelectorArgument="&lt;webctrl id='isForRent' tag='INPUT' type='radio' class='StyledFormControl-c11n-8-102-0__sc-w61kvv-0 kZEWJE Radio-c11n-8-102-0__sc-yicu80-0 CategoryRadioButton__StyledRadio-srp-8-102-0__sc-jtaiy8-3 Jbjxv chQtXo' aaname='For Rent' /&gt;" Guid="92739862-143c-43f0-be04-1e48ba10e905" InformativeScreenshot="1f64c05f056a8e616ca77409a7a7c17c.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='NY Real Estate - New York Homes For Sale | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target CVScreenId="0e514a95-b0e6-4a05-a7c2-dfa9473e8166" CvTextArea="388, 332, 72, 16" CvTextArgument="For Rent" CvType="Text" DesignTimeRectangle="372, 313, 256, 55" ElementType="Text" FuzzySelectorArgument="&lt;webctrl type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY CategoryRadioButton__StyledLabel-srp-8-102-0__sc-jtaiy8-2 krxcWp' tag='LABEL' aaname='' check:innerText='For Rent' /&gt;" Guid="1cf64765-e95a-4cf9-af5f-3ee842b6f153" SearchSteps="FuzzySelector, CV" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:VerifyExecutionOptions.Target>
+                                <uix:VerifyExecutionOptions.Timeout>
+                                  <InArgument x:TypeArguments="x:Double" />
+                                </uix:VerifyExecutionOptions.Timeout>
+                              </uix:VerifyExecutionOptions>
+                            </uix:NClick.VerifyOptions>
+                          </uix:NClick>
+                          <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click Apply" sap:VirtualizedContainerService.HintSize="354,220" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="a5867c8f-efa1-42d2-b4a7-c49f6c0c9f85" Timeout="{x:Null}" Version="V4">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/for_sale/ny_rb/" CVScreenId="0e514a95-b0e6-4a05-a7c2-dfa9473e8166" CvElementArea="349, 446, 265, 47" CvTextArea="457, 459, 50, 21" CvTextArgument="Apply" CvType="Button" DesignTimeRectangle="352, 447, 260, 44" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aaname='Apply' parentid='listing-type' tag='BUTTON' type='' class='StyledButton-c11n-8-102-0__sc-iv7357-0 hdovzj' check:innerText='Apply' /&gt;" Guid="7369d103-9ca1-419c-8de3-6f99d38e4dac" InformativeScreenshot="f8d38ed3bb905c06dbf3bbf0ad2fce3f.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='NY Real Estate - New York Homes For Sale | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                            </uix:NClick.Target>
+                            <uix:NClick.VerifyOptions>
+                              <uix:VerifyExecutionOptions DisplayName="Button 'Apply'" Mode="Appears">
+                                <uix:VerifyExecutionOptions.Retry>
+                                  <InArgument x:TypeArguments="x:Boolean" />
+                                </uix:VerifyExecutionOptions.Retry>
+                                <uix:VerifyExecutionOptions.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/for_rent/?userPosition=106.7009,10.7765&amp;userPositionBounds=10.781500000000001,106.7059,10.7715,106.69590000000001&amp;currentLocationSearch=true&amp;searchQueryState=%7B%22pagination%22%3A%7B%7D%2C%22isMapVisible%22%3Atrue%2C%22mapBounds%22%3A%7B%22west%22%3A106.68843309249878%2C%22east%22%3A106.71336690750123%2C%22south%22%3A10.767720407943465%2C%22north%22%3A10.785279419049003%7D%2C%22filterState%22%3A%7B%22fr%22%3A%7B%22value%22%3Atrue%7D%2C%22fsba%22%3A%7B%22value%22%3Afalse%7D%2C%22fsbo%22%3A%7B%22value%22%3Afalse%7D%2C%22nc%22%3A%7B%22value%22%3Afalse%7D%2C%22cmsn%22%3A%7B%22value%22%3Afalse%7D%2C%22auc%22%3A%7B%22value%22%3Afalse%7D%2C%22fore%22%3A%7B%22value%22%3Afalse%7D%2C%22ah%22%3A%7B%22value%22%3Atrue%7D%2C%22apco%22%3A%7B%22value%22%3Afalse%7D%2C%22tow%22%3A%7B%22value%22%3Afalse%7D%2C%22apa%22%3A%7B%22value%22%3Afalse%7D%2C%22con%22%3A%7B%22value%22%3Afalse%7D%2C%22sf%22%3A%7B%22value%22%3Afalse%7D%7D%2C%22isListVisible%22%3Atrue%2C%22mapZoom%22%3A16%2C%22usersSearchTerm%22%3A%22%22%7D" CVScreenId="f49e6606-21bf-4883-894d-edb7d485a68f" CvElementArea="646, 446, 263, 47" CvTextArea="753, 460, 49, 20" CvTextArgument="Apply" CvType="Button" DesignTimeRectangle="648, 447, 260, 44" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aaname='Apply' parentid='listing-type' tag='BUTTON' type='' class='StyledButton-c11n-8-102-0__sc-iv7357-0 hdovzj' check:innerText='Apply' /&gt;" Guid="f9f0942d-591e-48b3-a6b2-e0f7b06a804b" InformativeScreenshot="7c8a87a2565a69719e7ffb50eb78eaf4.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings - 0 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                                </uix:VerifyExecutionOptions.Target>
+                                <uix:VerifyExecutionOptions.Timeout>
+                                  <InArgument x:TypeArguments="x:Double" />
+                                </uix:VerifyExecutionOptions.Timeout>
+                              </uix:VerifyExecutionOptions>
+                            </uix:NClick.VerifyOptions>
+                          </uix:NClick>
+                        </Sequence>
+                      </ActivityAction>
+                    </uix:NApplicationCard.Body>
+                    <uix:NApplicationCard.TargetApp>
+                      <uix:TargetApp Area="1912, -8, 1936, 1096" BrowserType="Edge" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAVhSURBVFhHzVd7TJVlHH7O+YBzDndEUDNREPASBeJUZjpOiqJADAxcyqXkeuAcTStL1lrzkssaDK21tLY223Si/7jQlq2amVZLbVqYl8KwlsrCKbcQha/n/b6PzvHwcQBT17M9E7/393ue33v7vYC7gu9oYOnJKDjkHeR2/hypfHsg8I/wQuanM+HoOYBK+SbZxZ/rlW9i7L7BMgqIzvVDev1SzvokjeU76JBPcCxXiRGx9xTmkUDKzlFYJVfBLjf1M++jGFslv8zYcCXnnsAnCFiwKxYr5Q9ocqOfaX9eZ+wOJUfk/id4+0lI3WvlzD6j8C03I0/sZs4h5iZTw6ipDQNGniXrdjNyvyuiWIOb+HDYQI1nFC2hOSR4WQywvheGyu7NPFhXdEQHY69G9f8O+TK1NlEzlNqaiR7EYFC0hLnvTGXCLiZ3/CsyFDrkVvISl/4weYrfXLeMWt0fUXsyPYz9CxEfpleZUNG1EBW3DzOhxyXZE9t44M6j/O96LDn6PDkNWV9ZkH0kEaWtX3PcVaeH2l+gvCsFietMziK8A4DEqhBWXc6gsy4JA9MhX6TxAea8gvT9SZi10aSpOZHzfSrjzjDeuR0qzzCvhJ7BijeCJ3PmPcUcaHELdGcHBY/ynlcj/WAmHq8ZgVnr1QOrhzg7UHytUsnrr9VMzwJ6+7CASUFclrd1gvrYzNnugf1WGTL2PYb4NV4ImKC5eEBcxXiUXNvGfNGu++uWd71Fby6BWkCtTlAjl6oWK66kIWbZWERl8pCO09Q9YHIhkFaXgJLWOuZ36eiqLO96Q6+A2+R52G6tR2nbDPb1YIRN05Q1SCYDKcG6w4InD5nhE2hQvhvYb2LzjCi5Mpfb9DnNPTeuOwqwdVfDxhkXddK4JQ5Ty/wQOFHRVWCQ+B6MMGJKpS/yLkxB/i8rUfTXchT8FgBTiDoenSsxdz6Nv6WBmIi+sRizy5303EBvfyAwiqJn5sF6NgHmF8w0Umcj4B8heoMXopaEo7hlHso63+dB/AlFza9irDWM5gbFPDJLQlnbAgofp4H7Fe5lTht5mTyNopbdnMSLWNbwKL2ZDK6g5GOEkUvbh6AY0MDEwFguVT6rFW+/EGnBs02vYdxCUaUaG5ltRFmHleMnXExvM/YqD++PvPv7seTYOvaIZOQcDeU2eStbKPlQwGmpIjBSLKUvnvpmBpPXUugYqe6lgy9hYeNGjE+nOSFWKToHKG2fw/HjnL3MnN/Jw+S7yPqyEIvqJmHONklZJY8Qb3f8GjPSPk7mAdpMsdMUdTYQu9yO/HM1mJARpmWwAIMB+Y0JLGw3nuNrWXDxTfaGXDICs2sAv4e1wMFgCZf4dk9j1bUU03v5brKoD7Fo70NahorElyTYOpJRcj0XiWtjELHYfT094xGb+rslu5E/KnrX00iv/4sT+wnyzsVgdJKa2IeIVANillr4r/ZhEIxKMmBx3Vik1i0m12JFcwZCppr7+sBWHfNemp9CQeN0jHTrBZ5gYGuWTEZ4+3vRKICHbwa5Gnnn93CVfyCbyBuw3Xzd2Qd0O2HvVRQ0ZSE0brATBJgC1T5hHmHBzA1hKLiwgL1iC/v9MW7rH8oBtrut8ACd0DVgE0bGM2AAmEN5a9isxiT5Y/mRcbzfqWQ1807TrJUUb4D7S+iqP0gBtu4tiMoO1uycEM1pzGxvpNRF8Ao+oSxlZa9oQJ2k6IADm7py0ALEb8Cl7aswMYdPJqH+XRCItPok7uFqjh8kW13ih8chFCDu/5+8Zk+zR4Rj/s5MXset/PazbuxwOaQCVP7KGe/jQbqkM3b3HEYB94f/1wLECX4Q1AqYFPAP8wViHklbMU4AAAAASUVORK5CYII=" InformativeScreenshot="9a23274ee047d6dd691d93dc47c86439.jpg" Selector="&lt;html app='msedge.exe' title='NY Real Estate - New York Homes For Sale | Zillow' /&gt;" Title="NY Real Estate - New York Homes For Sale | Zillow" Url="https://www.zillow.com/homes/for_sale/ny_rb/" />
+                    </uix:NApplicationCard.TargetApp>
+                  </uix:NApplicationCard>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.zillow.com/" DesignTimeRectangle="730, 382, 476, 434" DesignTimeScaleFactor="1" FuzzySelectorArgument="&lt;webctrl type='' tag='DIV' class='DialogBody-c11n-8-104-2__sc-1l4a94i-0 eAaqhU' aaname='' check:innerText='What type of listings would you like to see?&amp;#xA;For sale&amp;#xA;For rent&amp;#xA;Skip this question' /&gt;" Guid="6bda49cd-334c-4e97-9137-6497c1628a32" InformativeScreenshot="9cf9f888cba1241deb0a09dac0746d19.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Zillow: Real Estate, Apartments, Mortgages &amp;amp; Home Values' /&gt;" SearchSteps="FuzzySelector" Version="V4" Visibility="Interactive" />
+              </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NCheckState>
+            <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Zillow: listing FIlter" sap:VirtualizedContainerService.HintSize="1078,3130" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V2">
+              <uix:NApplicationCard.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Zillow Listing" sap:VirtualizedContainerService.HintSize="612,2887" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click Home Type Dropdown " sap:VirtualizedContainerService.HintSize="550,227" sap2010:WorkflowViewState.IdRef="NClick_8" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Timeout="{x:Null}" Version="V4">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/for_sale/ny_rb/" CVScreenId="9878cea5-1233-4478-ba3b-69610c164aaf" CvTextArea="796, 214, 79, 17" CvTextArgument="Home Type" CvType="Text" DesignTimeRectangle="773, 203, 150, 37" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl parentid='home-type' tag='BUTTON' type='' class='StyledButton-c11n-8-102-0__sc-iv7357-0 eKiOZe DropdownButton-c11n-8-102-0__sc-1nhw8sf-0 dialog__StyledDropdownButton-srp-8-102-0__sc-fdndby-3 jslYgl fVRqtt DropdownPopper-c11n-8-102-0__sc-u1wzgh-0 iRrNMo' aaname='Home Type' check:innerText='Home Type' /&gt;" Guid="6360ffa4-e3f7-4937-bde7-8472c899e723" InformativeScreenshot="9becada3da2233d3c89ba33cc1d6f730.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='NY Real Estate - New York Homes For Sale | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                      </uix:NClick.Target>
+                      <uix:NClick.VerifyOptions>
+                        <uix:VerifyExecutionOptions DisplayName="Button 'Home Type'" Mode="Appears">
+                          <uix:VerifyExecutionOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionOptions.Retry>
+                          <uix:VerifyExecutionOptions.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/for_rent/?userPosition=106.7009,10.7765&amp;userPositionBounds=10.781500000000001,106.7059,10.7715,106.69590000000001&amp;currentLocationSearch=true&amp;searchQueryState=%7B%22pagination%22%3A%7B%7D%2C%22isMapVisible%22%3Atrue%2C%22mapBounds%22%3A%7B%22west%22%3A106.68843309249878%2C%22east%22%3A106.71336690750123%2C%22south%22%3A10.767720407943465%2C%22north%22%3A10.785279419049003%7D%2C%22filterState%22%3A%7B%22fr%22%3A%7B%22value%22%3Atrue%7D%2C%22fsba%22%3A%7B%22value%22%3Afalse%7D%2C%22fsbo%22%3A%7B%22value%22%3Afalse%7D%2C%22nc%22%3A%7B%22value%22%3Afalse%7D%2C%22cmsn%22%3A%7B%22value%22%3Afalse%7D%2C%22auc%22%3A%7B%22value%22%3Afalse%7D%2C%22fore%22%3A%7B%22value%22%3Afalse%7D%2C%22ah%22%3A%7B%22value%22%3Atrue%7D%2C%22apco%22%3A%7B%22value%22%3Afalse%7D%2C%22tow%22%3A%7B%22value%22%3Afalse%7D%2C%22apa%22%3A%7B%22value%22%3Afalse%7D%2C%22con%22%3A%7B%22value%22%3Afalse%7D%2C%22sf%22%3A%7B%22value%22%3Afalse%7D%7D%2C%22isListVisible%22%3Atrue%2C%22mapZoom%22%3A16%2C%22usersSearchTerm%22%3A%22%22%7D" CVScreenId="e7759495-19e7-4b84-bd7d-ab5f6130b2d4" CvTextArea="1080, 214, 80, 16" CvTextArgument="Home Type" CvType="Text" DesignTimeRectangle="1057, 203, 150, 37" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl parentid='home-type' tag='BUTTON' type='' class='StyledButton-c11n-8-102-0__sc-iv7357-0 eKiOZe DropdownButton-c11n-8-102-0__sc-1nhw8sf-0 dialog__StyledDropdownButton-srp-8-102-0__sc-fdndby-3 jslYgl cTgBRC DropdownPopper-c11n-8-102-0__sc-u1wzgh-0 iRrNMo' aaname='Home Type' check:innerText='Home Type' /&gt;" Guid="9b711c94-8617-4250-adf1-d9b4f21e49b3" InformativeScreenshot="ef41172416bf059dd42dd1dc2018ae9f.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings - 0 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                          </uix:VerifyExecutionOptions.Target>
+                          <uix:VerifyExecutionOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionOptions.Timeout>
+                        </uix:VerifyExecutionOptions>
+                      </uix:NClick.VerifyOptions>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NClick>
+                    <uix:NGetText DisplayName="Get Text 'Select All'" sap:VirtualizedContainerService.HintSize="550,190" sap2010:WorkflowViewState.IdRef="NGetText_4" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                      <uix:NGetText.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/for_sale/ny_rb/" CVScreenId="0492e866-256d-47c1-9ad3-11af40f2fde8" CvTextArea="820, 300, 83, 14" CvType="AnyWordGroup" DesignTimeRectangle="789, 296, 114, 24" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='button' class='StyledTextButton-c11n-8-102-0__sc-1nwmfqo-0 dVwKyp' /&gt;" Guid="3c8e3388-8968-4865-907e-6722e88ab127" InformativeScreenshot="bc1dc8f432845fe12e4e4a700cdf87a3.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='NY Real Estate - New York Homes For Sale | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                      </uix:NGetText.Target>
+                      <uix:NGetText.TextString>
+                        <OutArgument x:TypeArguments="x:String">
+                          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_13">IsSelectAll</CSharpReference>
+                        </OutArgument>
+                      </uix:NGetText.TextString>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NGetText>
+                    <If sap:VirtualizedContainerService.HintSize="550,581" sap2010:WorkflowViewState.IdRef="If_5">
+                      <If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_25">IsSelectAll == "Select All"</CSharpValue>
+                        </InArgument>
+                      </If.Condition>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,104" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,306" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Select All'" sap:VirtualizedContainerService.HintSize="354,218" sap2010:WorkflowViewState.IdRef="NClick_22" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.zillow.com/ny/rentals/?searchQueryState=%7B%22pagination%22%3A%7B%7D%2C%22isMapVisible%22%3Atrue%2C%22mapBounds%22%3A%7B%22west%22%3A-82.153097140625%2C%22east%22%3A-69.386983859375%2C%22south%22%3A39.33946202633692%2C%22north%22%3A46.05499514040907%7D%2C%22usersSearchTerm%22%3A%22NY%22%2C%22regionSelection%22%3A%5B%7B%22regionId%22%3A43%2C%22regionType%22%3A2%7D%5D%2C%22filterState%22%3A%7B%22fr%22%3A%7B%22value%22%3Atrue%7D%2C%22fsba%22%3A%7B%22value%22%3Afalse%7D%2C%22fsbo%22%3A%7B%22value%22%3Afalse%7D%2C%22nc%22%3A%7B%22value%22%3Afalse%7D%2C%22cmsn%22%3A%7B%22value%22%3Afalse%7D%2C%22auc%22%3A%7B%22value%22%3Afalse%7D%2C%22fore%22%3A%7B%22value%22%3Afalse%7D%2C%22ah%22%3A%7B%22value%22%3Atrue%7D%2C%22r4re%22%3A%7B%22value%22%3Afalse%7D%2C%22sf%22%3A%7B%22value%22%3Afalse%7D%2C%22apco%22%3A%7B%22value%22%3Afalse%7D%2C%22tow%22%3A%7B%22value%22%3Afalse%7D%2C%22apa%22%3A%7B%22value%22%3Afalse%7D%2C%22con%22%3A%7B%22value%22%3Afalse%7D%7D%2C%22isListVisible%22%3Atrue%2C%22mapZoom%22%3A7%7D" CVScreenId="64048e96-a727-4ddd-ac14-424dea18887a" CvTextArea="1103, 300, 66, 14" CvTextArgument="Select All" CvType="Text" DesignTimeRectangle="1073, 296, 96, 24" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aaname='Select All' tag='BUTTON' type='button' class='StyledTextButton-c11n-8-102-0__sc-1nwmfqo-0 dVwKyp' check:innerText='Select All' /&gt;" Guid="053130f2-5e30-49a1-8012-060abfe0a9df" InformativeScreenshot="6e617902067239c3f246ecadfd16ad0c.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 38675 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target CVScreenId="64048e96-a727-4ddd-ac14-424dea18887a" CvTextArea="1103, 300, 66, 14" CvTextArgument="Select All" CvType="Text" DesignTimeRectangle="1103, 300, 66, 14" ElementType="Text" Guid="40e7014d-3984-4ff8-9be4-3f75a4201826" SearchSteps="CV" TargetType="ComputerVisionBased" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NClick.Target>
+                            <uix:NClick.VerifyOptions>
+                              <uix:VerifyExecutionOptions DisplayName="Button 'Deselect All'" Mode="Appears">
+                                <uix:VerifyExecutionOptions.Retry>
+                                  <InArgument x:TypeArguments="x:Boolean" />
+                                </uix:VerifyExecutionOptions.Retry>
+                                <uix:VerifyExecutionOptions.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/for_sale/ny_rb/" CVScreenId="0492e866-256d-47c1-9ad3-11af40f2fde8" CvTextArea="820, 300, 83, 14" CvTextArgument="Deselect All" CvType="Text" DesignTimeRectangle="789, 296, 114, 24" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aaname='Deselect All' tag='BUTTON' type='button' class='StyledTextButton-c11n-8-102-0__sc-1nwmfqo-0 dVwKyp' check:innerText='Deselect All' /&gt;" Guid="29f012cc-11a8-48ba-8baf-c69c089065fc" InformativeScreenshot="661bd06f5e9bacfe7fc14a5a0fd77d8b.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='NY Real Estate - New York Homes For Sale | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                                </uix:VerifyExecutionOptions.Target>
+                                <uix:VerifyExecutionOptions.Timeout>
+                                  <InArgument x:TypeArguments="x:Double" />
+                                </uix:VerifyExecutionOptions.Timeout>
+                              </uix:VerifyExecutionOptions>
+                            </uix:NClick.VerifyOptions>
+                          </uix:NClick>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                    <Switch x:TypeArguments="x:String" DisplayName="Switch" sap:VirtualizedContainerService.HintSize="550,1142" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+                      <Switch.Default>
+                        <Sequence sap:VirtualizedContainerService.HintSize="512,854" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NGetText ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Get Text 'Deselect All'" sap:VirtualizedContainerService.HintSize="450,190" sap2010:WorkflowViewState.IdRef="NGetText_1" OutUiElement="{x:Null}" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" ScrapingOptions="{x:Null}" Timeout="{x:Null}" Version="V4" WordsInfo="{x:Null}">
+                            <uix:NGetText.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/for_sale/ny_rb/" CVScreenId="ce6e17a0-7d2f-4b4b-b801-f26b80adc003" CvTextArea="820, 300, 83, 14" CvType="AnyWordGroup" DesignTimeRectangle="789, 296, 114, 24" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='button' class='StyledTextButton-c11n-8-102-0__sc-1nwmfqo-0 dVwKyp' /&gt;" Guid="27e56d1c-5fc9-4778-b55c-150b85838041" InformativeScreenshot="bc1dc8f432845fe12e4e4a700cdf87a3.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='NY Real Estate - New York Homes For Sale | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                            </uix:NGetText.Target>
+                            <uix:NGetText.TextString>
+                              <OutArgument x:TypeArguments="x:String">
+                                <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_11">IsSelectAll</CSharpReference>
+                              </OutArgument>
+                            </uix:NGetText.TextString>
+                          </uix:NGetText>
+                          <If sap:VirtualizedContainerService.HintSize="450,574" sap2010:WorkflowViewState.IdRef="If_3">
+                            <If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_23">IsSelectAll == "Select All"</CSharpValue>
+                              </InArgument>
+                            </If.Condition>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If.Then>
+                              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,104" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,306" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Select All'" sap:VirtualizedContainerService.HintSize="354,218" sap2010:WorkflowViewState.IdRef="NClick_19" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable BrowserURL="https://www.zillow.com/ny/rentals/?searchQueryState=%7B%22pagination%22%3A%7B%7D%2C%22isMapVisible%22%3Atrue%2C%22mapBounds%22%3A%7B%22west%22%3A-82.153097140625%2C%22east%22%3A-69.386983859375%2C%22south%22%3A39.33946202633692%2C%22north%22%3A46.05499514040907%7D%2C%22usersSearchTerm%22%3A%22NY%22%2C%22regionSelection%22%3A%5B%7B%22regionId%22%3A43%2C%22regionType%22%3A2%7D%5D%2C%22filterState%22%3A%7B%22fr%22%3A%7B%22value%22%3Atrue%7D%2C%22fsba%22%3A%7B%22value%22%3Afalse%7D%2C%22fsbo%22%3A%7B%22value%22%3Afalse%7D%2C%22nc%22%3A%7B%22value%22%3Afalse%7D%2C%22cmsn%22%3A%7B%22value%22%3Afalse%7D%2C%22auc%22%3A%7B%22value%22%3Afalse%7D%2C%22fore%22%3A%7B%22value%22%3Afalse%7D%2C%22ah%22%3A%7B%22value%22%3Atrue%7D%2C%22r4re%22%3A%7B%22value%22%3Afalse%7D%2C%22sf%22%3A%7B%22value%22%3Afalse%7D%2C%22apco%22%3A%7B%22value%22%3Afalse%7D%2C%22tow%22%3A%7B%22value%22%3Afalse%7D%2C%22apa%22%3A%7B%22value%22%3Afalse%7D%2C%22con%22%3A%7B%22value%22%3Afalse%7D%7D%2C%22isListVisible%22%3Atrue%2C%22mapZoom%22%3A7%7D" CVScreenId="64048e96-a727-4ddd-ac14-424dea18887a" CvTextArea="1103, 300, 66, 14" CvTextArgument="Select All" CvType="Text" DesignTimeRectangle="1073, 296, 96, 24" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aaname='Select All' tag='BUTTON' type='button' class='StyledTextButton-c11n-8-102-0__sc-1nwmfqo-0 dVwKyp' check:innerText='Select All' /&gt;" Guid="053130f2-5e30-49a1-8012-060abfe0a9df" InformativeScreenshot="6e617902067239c3f246ecadfd16ad0c.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 38675 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                          <uix:Target CVScreenId="64048e96-a727-4ddd-ac14-424dea18887a" CvTextArea="1103, 300, 66, 14" CvTextArgument="Select All" CvType="Text" DesignTimeRectangle="1103, 300, 66, 14" ElementType="Text" Guid="40e7014d-3984-4ff8-9be4-3f75a4201826" SearchSteps="CV" TargetType="ComputerVisionBased" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NClick.Target>
+                                  <uix:NClick.VerifyOptions>
+                                    <uix:VerifyExecutionOptions DisplayName="Button 'Deselect All'" Mode="Appears">
+                                      <uix:VerifyExecutionOptions.Retry>
+                                        <InArgument x:TypeArguments="x:Boolean" />
+                                      </uix:VerifyExecutionOptions.Retry>
+                                      <uix:VerifyExecutionOptions.Target>
+                                        <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/for_sale/ny_rb/" CVScreenId="ce6e17a0-7d2f-4b4b-b801-f26b80adc003" CvTextArea="820, 300, 83, 14" CvTextArgument="Deselect All" CvType="Text" DesignTimeRectangle="789, 296, 114, 24" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aaname='Deselect All' tag='BUTTON' type='button' class='StyledTextButton-c11n-8-102-0__sc-1nwmfqo-0 dVwKyp' check:innerText='Deselect All' /&gt;" Guid="de907b3e-f494-45ec-97ed-918e99830f5a" InformativeScreenshot="52b2225e78e0d8a62f8f213048996a5e.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='NY Real Estate - New York Homes For Sale | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                                      </uix:VerifyExecutionOptions.Target>
+                                      <uix:VerifyExecutionOptions.Timeout>
+                                        <InArgument x:TypeArguments="x:Double" />
+                                      </uix:VerifyExecutionOptions.Timeout>
+                                    </uix:VerifyExecutionOptions>
+                                  </uix:NClick.VerifyOptions>
+                                </uix:NClick>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                      </Switch.Default>
+                      <Switch.Expression>
+                        <InArgument x:TypeArguments="x:String">
+                          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13">
+                            <CSharpValue.Result>
+                              <OutArgument x:TypeArguments="x:String" />
+                            </CSharpValue.Result>HomeType</CSharpValue>
+                        </InArgument>
+                      </Switch.Expression>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <uix:NClick x:Key="House" ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click Houses" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Timeout="{x:Null}" Version="V4">
+                        <uix:NClick.Target>
+                          <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/ny_rb/" CVScreenId="fa8a7643-f38d-4572-86bc-16a17753cd85" CvElementArea="1074, 346, 23, 23" CvType="CheckBox" DesignTimeRectangle="1075, 348, 20, 20" DesignTimeScaleFactor="1" ElementType="CheckBox" FuzzySelectorArgument="&lt;webctrl id='home-type_isSingleFamily' tag='INPUT' type='checkbox' class='StyledFormControl-c11n-8-102-0__sc-w61kvv-0 kZEWJE StyledCheckbox-c11n-8-102-0__sc-13jdanj-0 jwxCHP StyledFilterCheckbox__StyledCheckbox-srp-8-102-0__sc-9abn3d-2 gEPwne' aaname='Houses ' /&gt;" Guid="47811ab2-1993-4d36-b402-75fffce2a44e" InformativeScreenshot="1b08272e651bb44a7da1aee625bbf9a4.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 36041 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target CVScreenId="fa8a7643-f38d-4572-86bc-16a17753cd85" CvTextArea="1102, 348, 57, 15" CvTextArgument="Houses" CvType="Text" DesignTimeRectangle="1095, 344, 68, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Houses ' tag='LABEL' type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY short-label' check:innerText='Houses' /&gt;" Guid="9025b32c-e702-4e61-aa16-8dac1abf3b06" SearchSteps="FuzzySelector, CV" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NClick.Target>
+                        <uix:NClick.VerifyOptions>
+                          <uix:VerifyExecutionOptions DisplayName="Checkbox 'Houses'" Mode="Appears">
+                            <uix:VerifyExecutionOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionOptions.Retry>
+                            <uix:VerifyExecutionOptions.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/for_rent/?userPosition=106.7009,10.7765&amp;userPositionBounds=10.781500000000001,106.7059,10.7715,106.69590000000001&amp;currentLocationSearch=true&amp;searchQueryState=%7B%22pagination%22%3A%7B%7D%2C%22isMapVisible%22%3Atrue%2C%22mapBounds%22%3A%7B%22west%22%3A106.68843309249878%2C%22east%22%3A106.71336690750123%2C%22south%22%3A10.767720407943465%2C%22north%22%3A10.785279419049003%7D%2C%22filterState%22%3A%7B%22fr%22%3A%7B%22value%22%3Atrue%7D%2C%22fsba%22%3A%7B%22value%22%3Afalse%7D%2C%22fsbo%22%3A%7B%22value%22%3Afalse%7D%2C%22nc%22%3A%7B%22value%22%3Afalse%7D%2C%22cmsn%22%3A%7B%22value%22%3Afalse%7D%2C%22auc%22%3A%7B%22value%22%3Afalse%7D%2C%22fore%22%3A%7B%22value%22%3Afalse%7D%2C%22ah%22%3A%7B%22value%22%3Atrue%7D%2C%22apco%22%3A%7B%22value%22%3Afalse%7D%2C%22tow%22%3A%7B%22value%22%3Afalse%7D%2C%22apa%22%3A%7B%22value%22%3Afalse%7D%2C%22con%22%3A%7B%22value%22%3Afalse%7D%2C%22sf%22%3A%7B%22value%22%3Afalse%7D%7D%2C%22isListVisible%22%3Atrue%2C%22mapZoom%22%3A16%2C%22usersSearchTerm%22%3A%22%22%7D" CVScreenId="ec2c6455-e932-407b-b66e-322139151152" CvElementArea="1074, 346, 23, 23" CvTextArea="1102, 348, 57, 15" CvTextArgument="Houses" CvType="CheckBox" DesignTimeRectangle="1075, 344, 88, 24" DesignTimeScaleFactor="1" ElementType="CheckBox" FuzzySelectorArgument="&lt;webctrl type='' tag='DIV' class='StyledLabeledControl-c11n-8-102-0__sc-47exur-0 bpysJq StyledFilterCheckbox__StyledLabeledControl-srp-8-102-0__sc-9abn3d-0 ezXKW' aaname='' /&gt;" Guid="c41f3ef8-d5e2-40f8-947a-7b7363ff6fbb" InformativeScreenshot="0babd7428673bf12c822173c8902b5bc.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings - 0 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target CVScreenId="ec2c6455-e932-407b-b66e-322139151152" CvTextArea="1102, 348, 57, 15" CvTextArgument="Houses" CvType="Text" DesignTimeRectangle="1095, 344, 68, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Houses ' tag='LABEL' type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY short-label' check:innerText='Houses' /&gt;" Guid="75fd1cbf-c729-4613-bb1a-c846ef81e3ba" SearchSteps="FuzzySelector, CV" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:VerifyExecutionOptions.Target>
+                            <uix:VerifyExecutionOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionOptions.Timeout>
+                          </uix:VerifyExecutionOptions>
+                        </uix:NClick.VerifyOptions>
+                      </uix:NClick>
+                      <uix:NClick x:Key="Townhomes" ActivateBefore="True" AlterIfDisabled="{x:Null}" ClickType="Single" ContinueOnError="{x:Null}" CursorMotionType="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Click TownHome" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="NClick_12" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" OutUiElement="{x:Null}" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Timeout="{x:Null}" Version="V4">
+                        <uix:NClick.Target>
+                          <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/ny_rb/" CVScreenId="fa8a7643-f38d-4572-86bc-16a17753cd85" CvElementArea="1074, 466, 23, 23" CvType="CheckBox" DesignTimeRectangle="1075, 468, 20, 20" DesignTimeScaleFactor="1" ElementType="CheckBox" FuzzySelectorArgument="&lt;webctrl id='home-type_isTownhouse' tag='INPUT' type='checkbox' class='StyledFormControl-c11n-8-102-0__sc-w61kvv-0 kZEWJE StyledCheckbox-c11n-8-102-0__sc-13jdanj-0 jwxCHP StyledFilterCheckbox__StyledCheckbox-srp-8-102-0__sc-9abn3d-2 gEPwne' aaname='Townhomes ' /&gt;" Guid="f1c73377-eaf0-49f7-a26e-1b3d4a928c15" InformativeScreenshot="4f3be48a097866c06e0c0511934c10b9.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 36041 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target CVScreenId="fa8a7643-f38d-4572-86bc-16a17753cd85" CvTextArea="1102, 467, 93, 16" CvTextArgument="Townhomes" CvType="Text" DesignTimeRectangle="1095, 464, 104, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Townhomes ' tag='LABEL' type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY short-label' check:innerText='Townhomes' /&gt;" Guid="910f669e-d0d0-4408-8853-216e2cc5b490" SearchSteps="FuzzySelector, CV" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NClick.Target>
+                        <uix:NClick.VerifyOptions>
+                          <uix:VerifyExecutionOptions DisplayName="Checkbox 'Houses'" Mode="Appears">
+                            <uix:VerifyExecutionOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionOptions.Retry>
+                            <uix:VerifyExecutionOptions.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/for_rent/?userPosition=106.7009,10.7765&amp;userPositionBounds=10.781500000000001,106.7059,10.7715,106.69590000000001&amp;currentLocationSearch=true&amp;searchQueryState=%7B%22pagination%22%3A%7B%7D%2C%22isMapVisible%22%3Atrue%2C%22mapBounds%22%3A%7B%22west%22%3A106.68843309249878%2C%22east%22%3A106.71336690750123%2C%22south%22%3A10.767720407943465%2C%22north%22%3A10.785279419049003%7D%2C%22filterState%22%3A%7B%22fr%22%3A%7B%22value%22%3Atrue%7D%2C%22fsba%22%3A%7B%22value%22%3Afalse%7D%2C%22fsbo%22%3A%7B%22value%22%3Afalse%7D%2C%22nc%22%3A%7B%22value%22%3Afalse%7D%2C%22cmsn%22%3A%7B%22value%22%3Afalse%7D%2C%22auc%22%3A%7B%22value%22%3Afalse%7D%2C%22fore%22%3A%7B%22value%22%3Afalse%7D%2C%22ah%22%3A%7B%22value%22%3Atrue%7D%2C%22apco%22%3A%7B%22value%22%3Afalse%7D%2C%22tow%22%3A%7B%22value%22%3Afalse%7D%2C%22apa%22%3A%7B%22value%22%3Afalse%7D%2C%22con%22%3A%7B%22value%22%3Afalse%7D%2C%22sf%22%3A%7B%22value%22%3Afalse%7D%7D%2C%22isListVisible%22%3Atrue%2C%22mapZoom%22%3A16%2C%22usersSearchTerm%22%3A%22%22%7D" CVScreenId="ec2c6455-e932-407b-b66e-322139151152" CvElementArea="1074, 346, 23, 23" CvTextArea="1102, 348, 57, 15" CvTextArgument="Houses" CvType="CheckBox" DesignTimeRectangle="1075, 344, 88, 24" DesignTimeScaleFactor="1" ElementType="CheckBox" FuzzySelectorArgument="&lt;webctrl type='' tag='DIV' class='StyledLabeledControl-c11n-8-102-0__sc-47exur-0 bpysJq StyledFilterCheckbox__StyledLabeledControl-srp-8-102-0__sc-9abn3d-0 ezXKW' aaname='' /&gt;" Guid="c41f3ef8-d5e2-40f8-947a-7b7363ff6fbb" InformativeScreenshot="0babd7428673bf12c822173c8902b5bc.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings - 0 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target CVScreenId="ec2c6455-e932-407b-b66e-322139151152" CvTextArea="1102, 348, 57, 15" CvTextArgument="Houses" CvType="Text" DesignTimeRectangle="1095, 344, 68, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Houses ' tag='LABEL' type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY short-label' check:innerText='Houses' /&gt;" Guid="75fd1cbf-c729-4613-bb1a-c846ef81e3ba" SearchSteps="FuzzySelector, CV" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:VerifyExecutionOptions.Target>
+                            <uix:VerifyExecutionOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionOptions.Timeout>
+                          </uix:VerifyExecutionOptions>
+                        </uix:NClick.VerifyOptions>
+                      </uix:NClick>
+                      <uix:NClick x:Key="Apartment" ActivateBefore="True" ClickType="Single" DisplayName="Click default" sap:VirtualizedContainerService.HintSize="334,195" sap2010:WorkflowViewState.IdRef="NClick_13" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                        <uix:NClick.Target>
+                          <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/ny_rb/" CVScreenId="fa8a7643-f38d-4572-86bc-16a17753cd85" CvElementArea="1074, 394, 23, 23" CvType="CheckBox" DesignTimeRectangle="1075, 396, 20, 20" DesignTimeScaleFactor="1" ElementType="CheckBox" FuzzySelectorArgument="&lt;webctrl id='home-type_isApartmentOrCondo' tag='INPUT' type='checkbox' class='StyledFormControl-c11n-8-102-0__sc-w61kvv-0 kZEWJE StyledCheckbox-c11n-8-102-0__sc-13jdanj-0 jwxCHP StyledFilterCheckbox__StyledCheckbox-srp-8-102-0__sc-9abn3d-2 gEPwne' aaname='Apartments/Condos/Co-ops ' /&gt;" Guid="640f161b-bcbd-435c-a057-6006ed08553a" InformativeScreenshot="13dc25cad62c7de80500cffa20d9ba08.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 36041 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                            <uix:TargetAnchorable.Anchors>
+                              <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <uix:Target DesignTimeRectangle="1095, 392, 189, 48" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Apartments/Condos/Co-ops ' tag='LABEL' type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY short-label' check:innerText='Apartments/Condos/Co-ops' /&gt;" Guid="dcb84a63-183f-4d72-afae-34ed2b60dab9" SearchSteps="FuzzySelector" />
+                              </scg:List>
+                            </uix:TargetAnchorable.Anchors>
+                          </uix:TargetAnchorable>
+                        </uix:NClick.Target>
+                        <uix:NClick.VerifyOptions>
+                          <uix:VerifyExecutionOptions DisplayName="Checkbox 'Houses'" Mode="Appears">
+                            <uix:VerifyExecutionOptions.Retry>
+                              <InArgument x:TypeArguments="x:Boolean" />
+                            </uix:VerifyExecutionOptions.Retry>
+                            <uix:VerifyExecutionOptions.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/for_rent/?userPosition=106.7009,10.7765&amp;userPositionBounds=10.781500000000001,106.7059,10.7715,106.69590000000001&amp;currentLocationSearch=true&amp;searchQueryState=%7B%22pagination%22%3A%7B%7D%2C%22isMapVisible%22%3Atrue%2C%22mapBounds%22%3A%7B%22west%22%3A106.68843309249878%2C%22east%22%3A106.71336690750123%2C%22south%22%3A10.767720407943465%2C%22north%22%3A10.785279419049003%7D%2C%22filterState%22%3A%7B%22fr%22%3A%7B%22value%22%3Atrue%7D%2C%22fsba%22%3A%7B%22value%22%3Afalse%7D%2C%22fsbo%22%3A%7B%22value%22%3Afalse%7D%2C%22nc%22%3A%7B%22value%22%3Afalse%7D%2C%22cmsn%22%3A%7B%22value%22%3Afalse%7D%2C%22auc%22%3A%7B%22value%22%3Afalse%7D%2C%22fore%22%3A%7B%22value%22%3Afalse%7D%2C%22ah%22%3A%7B%22value%22%3Atrue%7D%2C%22apco%22%3A%7B%22value%22%3Afalse%7D%2C%22tow%22%3A%7B%22value%22%3Afalse%7D%2C%22apa%22%3A%7B%22value%22%3Afalse%7D%2C%22con%22%3A%7B%22value%22%3Afalse%7D%2C%22sf%22%3A%7B%22value%22%3Afalse%7D%7D%2C%22isListVisible%22%3Atrue%2C%22mapZoom%22%3A16%2C%22usersSearchTerm%22%3A%22%22%7D" CVScreenId="ec2c6455-e932-407b-b66e-322139151152" CvElementArea="1074, 346, 23, 23" CvTextArea="1102, 348, 57, 15" CvTextArgument="Houses" CvType="CheckBox" DesignTimeRectangle="1075, 344, 88, 24" DesignTimeScaleFactor="1" ElementType="CheckBox" FuzzySelectorArgument="&lt;webctrl type='' tag='DIV' class='StyledLabeledControl-c11n-8-102-0__sc-47exur-0 bpysJq StyledFilterCheckbox__StyledLabeledControl-srp-8-102-0__sc-9abn3d-0 ezXKW' aaname='' /&gt;" Guid="c41f3ef8-d5e2-40f8-947a-7b7363ff6fbb" InformativeScreenshot="0babd7428673bf12c822173c8902b5bc.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings - 0 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target CVScreenId="ec2c6455-e932-407b-b66e-322139151152" CvTextArea="1102, 348, 57, 15" CvTextArgument="Houses" CvType="Text" DesignTimeRectangle="1095, 344, 68, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Houses ' tag='LABEL' type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY short-label' check:innerText='Houses' /&gt;" Guid="75fd1cbf-c729-4613-bb1a-c846ef81e3ba" SearchSteps="FuzzySelector, CV" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:VerifyExecutionOptions.Target>
+                            <uix:VerifyExecutionOptions.Timeout>
+                              <InArgument x:TypeArguments="x:Double" />
+                            </uix:VerifyExecutionOptions.Timeout>
+                          </uix:VerifyExecutionOptions>
+                        </uix:NClick.VerifyOptions>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </uix:NClick>
+                      <Sequence x:Key="All" sap:VirtualizedContainerService.HintSize="512,854" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NGetText DisplayName="Get Text 'Select All'" sap:VirtualizedContainerService.HintSize="450,190" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                          <uix:NGetText.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/for_sale/ny_rb/" CVScreenId="8cece395-ec36-426f-9790-6fdb63e83e8c" CvTextArea="820, 300, 83, 14" CvType="AnyWordGroup" DesignTimeRectangle="789, 296, 114, 24" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='button' class='StyledTextButton-c11n-8-102-0__sc-1nwmfqo-0 dVwKyp' /&gt;" Guid="5137185e-6cc5-4a2e-8b9a-ddae088b9345" InformativeScreenshot="29304f7d64abd0cb1b069720dc5b19ac.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='NY Real Estate - New York Homes For Sale | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                          </uix:NGetText.Target>
+                          <uix:NGetText.TextString>
+                            <OutArgument x:TypeArguments="x:String">
+                              <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_12">IsSelectAll</CSharpReference>
+                            </OutArgument>
+                          </uix:NGetText.TextString>
+                        </uix:NGetText>
+                        <If sap:VirtualizedContainerService.HintSize="450,574" sap2010:WorkflowViewState.IdRef="If_4">
+                          <If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_24">IsSelectAll == "Select All"</CSharpValue>
+                            </InArgument>
+                          </If.Condition>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If.Then>
+                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,306" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Select All'" sap:VirtualizedContainerService.HintSize="354,218" sap2010:WorkflowViewState.IdRef="NClick_21" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://www.zillow.com/ny/rentals/?searchQueryState=%7B%22pagination%22%3A%7B%7D%2C%22isMapVisible%22%3Atrue%2C%22mapBounds%22%3A%7B%22west%22%3A-82.153097140625%2C%22east%22%3A-69.386983859375%2C%22south%22%3A39.33946202633692%2C%22north%22%3A46.05499514040907%7D%2C%22usersSearchTerm%22%3A%22NY%22%2C%22regionSelection%22%3A%5B%7B%22regionId%22%3A43%2C%22regionType%22%3A2%7D%5D%2C%22filterState%22%3A%7B%22fr%22%3A%7B%22value%22%3Atrue%7D%2C%22fsba%22%3A%7B%22value%22%3Afalse%7D%2C%22fsbo%22%3A%7B%22value%22%3Afalse%7D%2C%22nc%22%3A%7B%22value%22%3Afalse%7D%2C%22cmsn%22%3A%7B%22value%22%3Afalse%7D%2C%22auc%22%3A%7B%22value%22%3Afalse%7D%2C%22fore%22%3A%7B%22value%22%3Afalse%7D%2C%22ah%22%3A%7B%22value%22%3Atrue%7D%2C%22r4re%22%3A%7B%22value%22%3Afalse%7D%2C%22sf%22%3A%7B%22value%22%3Afalse%7D%2C%22apco%22%3A%7B%22value%22%3Afalse%7D%2C%22tow%22%3A%7B%22value%22%3Afalse%7D%2C%22apa%22%3A%7B%22value%22%3Afalse%7D%2C%22con%22%3A%7B%22value%22%3Afalse%7D%7D%2C%22isListVisible%22%3Atrue%2C%22mapZoom%22%3A7%7D" CVScreenId="64048e96-a727-4ddd-ac14-424dea18887a" CvTextArea="1103, 300, 66, 14" CvTextArgument="Select All" CvType="Text" DesignTimeRectangle="1073, 296, 96, 24" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aaname='Select All' tag='BUTTON' type='button' class='StyledTextButton-c11n-8-102-0__sc-1nwmfqo-0 dVwKyp' check:innerText='Select All' /&gt;" Guid="053130f2-5e30-49a1-8012-060abfe0a9df" InformativeScreenshot="6e617902067239c3f246ecadfd16ad0c.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 38675 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target CVScreenId="64048e96-a727-4ddd-ac14-424dea18887a" CvTextArea="1103, 300, 66, 14" CvTextArgument="Select All" CvType="Text" DesignTimeRectangle="1103, 300, 66, 14" ElementType="Text" Guid="40e7014d-3984-4ff8-9be4-3f75a4201826" SearchSteps="CV" TargetType="ComputerVisionBased" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NClick.Target>
+                                <uix:NClick.VerifyOptions>
+                                  <uix:VerifyExecutionOptions DisplayName="Button 'Deselect All'" Mode="Appears">
+                                    <uix:VerifyExecutionOptions.Retry>
+                                      <InArgument x:TypeArguments="x:Boolean" />
+                                    </uix:VerifyExecutionOptions.Retry>
+                                    <uix:VerifyExecutionOptions.Target>
+                                      <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/for_sale/ny_rb/" CVScreenId="8cece395-ec36-426f-9790-6fdb63e83e8c" CvTextArea="820, 300, 83, 14" CvTextArgument="Deselect All" CvType="Text" DesignTimeRectangle="789, 296, 114, 24" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aaname='Deselect All' tag='BUTTON' type='button' class='StyledTextButton-c11n-8-102-0__sc-1nwmfqo-0 dVwKyp' check:innerText='Deselect All' /&gt;" Guid="2ba2ac46-a87f-4c4b-a710-c84e3293d728" InformativeScreenshot="f97dca7924ee04d6f9ec1b951824021a.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='NY Real Estate - New York Homes For Sale | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                                    </uix:VerifyExecutionOptions.Target>
+                                    <uix:VerifyExecutionOptions.Timeout>
+                                      <InArgument x:TypeArguments="x:Double" />
+                                    </uix:VerifyExecutionOptions.Timeout>
+                                  </uix:VerifyExecutionOptions>
+                                </uix:NClick.VerifyOptions>
+                              </uix:NClick>
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,104" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </Switch>
+                    <uix:NCheck Action="Uncheck" DisplayName="Uncheck Entire place" sap:VirtualizedContainerService.HintSize="550,190" sap2010:WorkflowViewState.IdRef="NCheck_9" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                      <uix:NCheck.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/Ny_rb/" CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvElementArea="1074, 570, 23, 23" CvType="CheckBox" DesignTimeRectangle="1075, 572, 20, 20" DesignTimeScaleFactor="1" ElementType="CheckBox" FuzzySelectorArgument="&lt;webctrl id='home-space-type_isEntirePlaceForRent' tag='INPUT' type='checkbox' class='StyledFormControl-c11n-8-102-0__sc-w61kvv-0 kZEWJE StyledCheckbox-c11n-8-102-0__sc-13jdanj-0 jwxCHP StyledFilterCheckbox__StyledCheckbox-srp-8-102-0__sc-9abn3d-2 gEPwne' aaname='Entire place ' /&gt;" Guid="0eaa7890-2c99-43fa-9ada-5440b1dfb5ad" InformativeScreenshot="43c6d2571bc1abdb7c92d81d8eb2e8c1.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 35958 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvTextArea="1102, 571, 89, 20" CvTextArgument="Entire place" CvType="Text" DesignTimeRectangle="1095, 568, 100, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Entire place ' tag='LABEL' type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY short-label' check:innerText='Entire place' /&gt;" Guid="364d0b7a-8ba5-4d39-a1f5-b01a75074320" SearchSteps="FuzzySelector, CV" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NCheck.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uix:NCheck>
+                    <uix:NCheck Action="Uncheck" DisplayName="Uncheck Room" sap:VirtualizedContainerService.HintSize="550,190" sap2010:WorkflowViewState.IdRef="NCheck_10" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                      <uix:NCheck.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/Ny_rb/" CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvElementArea="1074, 618, 23, 23" CvType="CheckBox" DesignTimeRectangle="1075, 620, 20, 20" DesignTimeScaleFactor="1" ElementType="CheckBox" FuzzySelectorArgument="&lt;webctrl id='home-space-type_isRoomForRent' tag='INPUT' type='checkbox' class='StyledFormControl-c11n-8-102-0__sc-w61kvv-0 kZEWJE StyledCheckbox-c11n-8-102-0__sc-13jdanj-0 jwxCHP StyledFilterCheckbox__StyledCheckbox-srp-8-102-0__sc-9abn3d-2 gEPwne' aaname='Room ' /&gt;" Guid="d4ba745b-8a30-425e-a19f-88fa604a4b27" InformativeScreenshot="48ac239e17fc08934e0ae554c9015643.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 35958 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvTextArea="1102, 620, 45, 15" CvTextArgument="Room" CvType="Text" DesignTimeRectangle="1095, 616, 56, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Room ' tag='LABEL' type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY short-label' check:innerText='Room' /&gt;" Guid="808b1041-71ad-4c55-8d84-f2706149d701" SearchSteps="FuzzySelector, CV" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NCheck.Target>
+                    </uix:NCheck>
+                    <Switch x:TypeArguments="x:String" DisplayName="Switch" sap:VirtualizedContainerService.HintSize="550,57" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                      <Switch.Default>
+                        <Sequence sap:VirtualizedContainerService.HintSize="416,463" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NCheck Action="Uncheck" DisplayName="Uncheck Entire place" sap:VirtualizedContainerService.HintSize="354,190" sap2010:WorkflowViewState.IdRef="NCheck_1" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                            <uix:NCheck.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/Ny_rb/" CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvElementArea="1074, 570, 23, 23" CvType="CheckBox" DesignTimeRectangle="1075, 572, 20, 20" DesignTimeScaleFactor="1" ElementType="CheckBox" FuzzySelectorArgument="&lt;webctrl id='home-space-type_isEntirePlaceForRent' tag='INPUT' type='checkbox' class='StyledFormControl-c11n-8-102-0__sc-w61kvv-0 kZEWJE StyledCheckbox-c11n-8-102-0__sc-13jdanj-0 jwxCHP StyledFilterCheckbox__StyledCheckbox-srp-8-102-0__sc-9abn3d-2 gEPwne' aaname='Entire place ' /&gt;" Guid="0eaa7890-2c99-43fa-9ada-5440b1dfb5ad" InformativeScreenshot="43c6d2571bc1abdb7c92d81d8eb2e8c1.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 35958 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                    <uix:Target CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvTextArea="1102, 571, 89, 20" CvTextArgument="Entire place" CvType="Text" DesignTimeRectangle="1095, 568, 100, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Entire place ' tag='LABEL' type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY short-label' check:innerText='Entire place' /&gt;" Guid="364d0b7a-8ba5-4d39-a1f5-b01a75074320" SearchSteps="FuzzySelector, CV" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NCheck.Target>
+                          </uix:NCheck>
+                          <uix:NCheck Action="Uncheck" DisplayName="Uncheck Room" sap:VirtualizedContainerService.HintSize="354,183" sap2010:WorkflowViewState.IdRef="NCheck_2" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                            <uix:NCheck.Target>
+                              <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/Ny_rb/" CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvElementArea="1074, 618, 23, 23" CvType="CheckBox" DesignTimeRectangle="1075, 620, 20, 20" DesignTimeScaleFactor="1" ElementType="CheckBox" FuzzySelectorArgument="&lt;webctrl id='home-space-type_isRoomForRent' tag='INPUT' type='checkbox' class='StyledFormControl-c11n-8-102-0__sc-w61kvv-0 kZEWJE StyledCheckbox-c11n-8-102-0__sc-13jdanj-0 jwxCHP StyledFilterCheckbox__StyledCheckbox-srp-8-102-0__sc-9abn3d-2 gEPwne' aaname='Room ' /&gt;" Guid="d4ba745b-8a30-425e-a19f-88fa604a4b27" InformativeScreenshot="48ac239e17fc08934e0ae554c9015643.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 35958 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                    <uix:Target CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvTextArea="1102, 620, 45, 15" CvTextArgument="Room" CvType="Text" DesignTimeRectangle="1095, 616, 56, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Room ' tag='LABEL' type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY short-label' check:innerText='Room' /&gt;" Guid="808b1041-71ad-4c55-8d84-f2706149d701" SearchSteps="FuzzySelector, CV" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NCheck.Target>
+                          </uix:NCheck>
+                        </Sequence>
+                      </Switch.Default>
+                      <Switch.Expression>
+                        <InArgument x:TypeArguments="x:String">
+                          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_20">SpaceType</CSharpValue>
+                        </InArgument>
+                      </Switch.Expression>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Sequence x:Key="All" sap:VirtualizedContainerService.HintSize="416,461" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NCheck Action="Check" DisplayName="Check Entire place" sap:VirtualizedContainerService.HintSize="354,189" sap2010:WorkflowViewState.IdRef="NCheck_3" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                          <uix:NCheck.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/Ny_rb/" CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvElementArea="1074, 570, 23, 23" CvType="CheckBox" DesignTimeRectangle="1075, 572, 20, 20" DesignTimeScaleFactor="1" ElementType="CheckBox" FuzzySelectorArgument="&lt;webctrl id='home-space-type_isEntirePlaceForRent' tag='INPUT' type='checkbox' class='StyledFormControl-c11n-8-102-0__sc-w61kvv-0 kZEWJE StyledCheckbox-c11n-8-102-0__sc-13jdanj-0 jwxCHP StyledFilterCheckbox__StyledCheckbox-srp-8-102-0__sc-9abn3d-2 gEPwne' aaname='Entire place ' /&gt;" Guid="0eaa7890-2c99-43fa-9ada-5440b1dfb5ad" InformativeScreenshot="43c6d2571bc1abdb7c92d81d8eb2e8c1.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 35958 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvTextArea="1102, 571, 89, 20" CvTextArgument="Entire place" CvType="Text" DesignTimeRectangle="1095, 568, 100, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Entire place ' tag='LABEL' type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY short-label' check:innerText='Entire place' /&gt;" Guid="364d0b7a-8ba5-4d39-a1f5-b01a75074320" SearchSteps="FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NCheck.Target>
+                        </uix:NCheck>
+                        <uix:NCheck Action="Check" DisplayName="Check Room" sap:VirtualizedContainerService.HintSize="354,182" sap2010:WorkflowViewState.IdRef="NCheck_4" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                          <uix:NCheck.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/Ny_rb/" CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvElementArea="1074, 618, 23, 23" CvType="CheckBox" DesignTimeRectangle="1075, 620, 20, 20" DesignTimeScaleFactor="1" ElementType="CheckBox" FuzzySelectorArgument="&lt;webctrl id='home-space-type_isRoomForRent' tag='INPUT' type='checkbox' class='StyledFormControl-c11n-8-102-0__sc-w61kvv-0 kZEWJE StyledCheckbox-c11n-8-102-0__sc-13jdanj-0 jwxCHP StyledFilterCheckbox__StyledCheckbox-srp-8-102-0__sc-9abn3d-2 gEPwne' aaname='Room ' /&gt;" Guid="d4ba745b-8a30-425e-a19f-88fa604a4b27" InformativeScreenshot="48ac239e17fc08934e0ae554c9015643.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 35958 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvTextArea="1102, 620, 45, 15" CvTextArgument="Room" CvType="Text" DesignTimeRectangle="1095, 616, 56, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Room ' tag='LABEL' type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY short-label' check:innerText='Room' /&gt;" Guid="808b1041-71ad-4c55-8d84-f2706149d701" SearchSteps="FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NCheck.Target>
+                        </uix:NCheck>
+                      </Sequence>
+                      <Sequence x:Key="Entire place" sap:VirtualizedContainerService.HintSize="416,272" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NCheck Action="Check" DisplayName="Check Entire place" sap:VirtualizedContainerService.HintSize="354,182" sap2010:WorkflowViewState.IdRef="NCheck_7" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                          <uix:NCheck.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/Ny_rb/" CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvElementArea="1074, 570, 23, 23" CvType="CheckBox" DesignTimeRectangle="1075, 572, 20, 20" DesignTimeScaleFactor="1" ElementType="CheckBox" FuzzySelectorArgument="&lt;webctrl id='home-space-type_isEntirePlaceForRent' tag='INPUT' type='checkbox' class='StyledFormControl-c11n-8-102-0__sc-w61kvv-0 kZEWJE StyledCheckbox-c11n-8-102-0__sc-13jdanj-0 jwxCHP StyledFilterCheckbox__StyledCheckbox-srp-8-102-0__sc-9abn3d-2 gEPwne' aaname='Entire place ' /&gt;" Guid="0eaa7890-2c99-43fa-9ada-5440b1dfb5ad" InformativeScreenshot="43c6d2571bc1abdb7c92d81d8eb2e8c1.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 35958 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvTextArea="1102, 571, 89, 20" CvTextArgument="Entire place" CvType="Text" DesignTimeRectangle="1095, 568, 100, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Entire place ' tag='LABEL' type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY short-label' check:innerText='Entire place' /&gt;" Guid="364d0b7a-8ba5-4d39-a1f5-b01a75074320" SearchSteps="FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NCheck.Target>
+                        </uix:NCheck>
+                      </Sequence>
+                      <Sequence x:Key="Room" sap:VirtualizedContainerService.HintSize="416,272" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NCheck Action="Check" DisplayName="Check Room" sap:VirtualizedContainerService.HintSize="354,182" sap2010:WorkflowViewState.IdRef="NCheck_8" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                          <uix:NCheck.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/Ny_rb/" CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvElementArea="1074, 618, 23, 23" CvType="CheckBox" DesignTimeRectangle="1075, 620, 20, 20" DesignTimeScaleFactor="1" ElementType="CheckBox" FuzzySelectorArgument="&lt;webctrl id='home-space-type_isRoomForRent' tag='INPUT' type='checkbox' class='StyledFormControl-c11n-8-102-0__sc-w61kvv-0 kZEWJE StyledCheckbox-c11n-8-102-0__sc-13jdanj-0 jwxCHP StyledFilterCheckbox__StyledCheckbox-srp-8-102-0__sc-9abn3d-2 gEPwne' aaname='Room ' /&gt;" Guid="d4ba745b-8a30-425e-a19f-88fa604a4b27" InformativeScreenshot="48ac239e17fc08934e0ae554c9015643.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 35958 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target CVScreenId="f5f6037a-3679-4b3c-8147-b4c93568c7e2" CvTextArea="1102, 620, 45, 15" CvTextArgument="Room" CvType="Text" DesignTimeRectangle="1095, 616, 56, 24" ElementType="Text" FuzzySelectorArgument="&lt;webctrl aaname='Room ' tag='LABEL' type='' class='StyledLabel-c11n-8-102-0__sc-14wqmdp-0 kxsJlY short-label' check:innerText='Room' /&gt;" Guid="808b1041-71ad-4c55-8d84-f2706149d701" SearchSteps="FuzzySelector, CV" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NCheck.Target>
+                        </uix:NCheck>
+                      </Sequence>
+                    </Switch>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Apply'" sap:VirtualizedContainerService.HintSize="550,220" sap2010:WorkflowViewState.IdRef="NClick_24" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="e5aeeec7-fdf6-4648-a296-32c543de842b" Version="V4">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="https://www.zillow.com/ny/rentals/?searchQueryState=%7B%22pagination%22%3A%7B%7D%2C%22isMapVisible%22%3Atrue%2C%22mapBounds%22%3A%7B%22west%22%3A-82.153097140625%2C%22east%22%3A-69.386983859375%2C%22south%22%3A39.33946202633692%2C%22north%22%3A46.05499514040907%7D%2C%22usersSearchTerm%22%3A%22NY%22%2C%22regionSelection%22%3A%5B%7B%22regionId%22%3A43%2C%22regionType%22%3A2%7D%5D%2C%22filterState%22%3A%7B%22fr%22%3A%7B%22value%22%3Atrue%7D%2C%22fsba%22%3A%7B%22value%22%3Afalse%7D%2C%22fsbo%22%3A%7B%22value%22%3Afalse%7D%2C%22nc%22%3A%7B%22value%22%3Afalse%7D%2C%22cmsn%22%3A%7B%22value%22%3Afalse%7D%2C%22auc%22%3A%7B%22value%22%3Afalse%7D%2C%22fore%22%3A%7B%22value%22%3Afalse%7D%2C%22ah%22%3A%7B%22value%22%3Atrue%7D%2C%22r4re%22%3A%7B%22value%22%3Afalse%7D%2C%22sf%22%3A%7B%22value%22%3Afalse%7D%2C%22apco%22%3A%7B%22value%22%3Afalse%7D%2C%22tow%22%3A%7B%22value%22%3Afalse%7D%2C%22apa%22%3A%7B%22value%22%3Afalse%7D%2C%22con%22%3A%7B%22value%22%3Afalse%7D%7D%2C%22isListVisible%22%3Atrue%2C%22mapZoom%22%3A7%7D" CVScreenId="5a3ee0fa-c9c2-4e86-aa59-30f172d83091" CvElementArea="1072, 673, 216, 47" CvTextArea="1154, 686, 50, 21" CvTextArgument="Apply" CvType="Button" DesignTimeRectangle="1073, 674, 213, 44" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aaname='Apply' parentid='home-type' tag='BUTTON' type='' class='StyledButton-c11n-8-102-0__sc-iv7357-0 hdovzj' check:innerText='Apply' /&gt;" Guid="0c8cb285-c357-4b6a-89d8-2ee7c4608b4d" InformativeScreenshot="9835bed5376a627999990864d72d79a4.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 38675 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                      </uix:NClick.Target>
+                      <uix:NClick.VerifyOptions>
+                        <uix:VerifyExecutionOptions DisplayName="Button 'Apply'" Mode="Appears">
+                          <uix:VerifyExecutionOptions.Retry>
+                            <InArgument x:TypeArguments="x:Boolean" />
+                          </uix:VerifyExecutionOptions.Retry>
+                          <uix:VerifyExecutionOptions.Target>
+                            <uix:TargetAnchorable BrowserURL="https://www.zillow.com/homes/ny_rb/" CVScreenId="fa8a7643-f38d-4572-86bc-16a17753cd85" CvElementArea="1072, 673, 216, 47" CvTextArea="1154, 686, 50, 21" CvTextArgument="Apply" CvType="Button" DesignTimeRectangle="1073, 674, 213, 44" DesignTimeScaleFactor="1" ElementType="Button" FuzzySelectorArgument="&lt;webctrl aaname='Apply' parentid='home-type' tag='BUTTON' type='' class='StyledButton-c11n-8-102-0__sc-iv7357-0 hdovzj' check:innerText='Apply' /&gt;" Guid="7d5a318c-be2d-4469-8cec-68facbaffe15" InformativeScreenshot="c6d313dff6f125d8bf15e3284fc49c2a.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rental Listings in New York - 36041 Rentals | Zillow' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive" />
+                          </uix:VerifyExecutionOptions.Target>
+                          <uix:VerifyExecutionOptions.Timeout>
+                            <InArgument x:TypeArguments="x:Double" />
+                          </uix:VerifyExecutionOptions.Timeout>
+                        </uix:VerifyExecutionOptions>
+                      </uix:NClick.VerifyOptions>
+                    </uix:NClick>
+                  </Sequence>
+                </ActivityAction>
+              </uix:NApplicationCard.Body>
+              <uix:NApplicationCard.TargetApp>
+                <uix:TargetApp Area="1912, -8, 1936, 1096" BrowserType="Edge" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAVhSURBVFhHzVd7TJVlHH7O+YBzDndEUDNREPASBeJUZjpOiqJADAxcyqXkeuAcTStL1lrzkssaDK21tLY223Si/7jQlq2amVZLbVqYl8KwlsrCKbcQha/n/b6PzvHwcQBT17M9E7/393ue33v7vYC7gu9oYOnJKDjkHeR2/hypfHsg8I/wQuanM+HoOYBK+SbZxZ/rlW9i7L7BMgqIzvVDev1SzvokjeU76JBPcCxXiRGx9xTmkUDKzlFYJVfBLjf1M++jGFslv8zYcCXnnsAnCFiwKxYr5Q9ocqOfaX9eZ+wOJUfk/id4+0lI3WvlzD6j8C03I0/sZs4h5iZTw6ipDQNGniXrdjNyvyuiWIOb+HDYQI1nFC2hOSR4WQywvheGyu7NPFhXdEQHY69G9f8O+TK1NlEzlNqaiR7EYFC0hLnvTGXCLiZ3/CsyFDrkVvISl/4weYrfXLeMWt0fUXsyPYz9CxEfpleZUNG1EBW3DzOhxyXZE9t44M6j/O96LDn6PDkNWV9ZkH0kEaWtX3PcVaeH2l+gvCsFietMziK8A4DEqhBWXc6gsy4JA9MhX6TxAea8gvT9SZi10aSpOZHzfSrjzjDeuR0qzzCvhJ7BijeCJ3PmPcUcaHELdGcHBY/ynlcj/WAmHq8ZgVnr1QOrhzg7UHytUsnrr9VMzwJ6+7CASUFclrd1gvrYzNnugf1WGTL2PYb4NV4ImKC5eEBcxXiUXNvGfNGu++uWd71Fby6BWkCtTlAjl6oWK66kIWbZWERl8pCO09Q9YHIhkFaXgJLWOuZ36eiqLO96Q6+A2+R52G6tR2nbDPb1YIRN05Q1SCYDKcG6w4InD5nhE2hQvhvYb2LzjCi5Mpfb9DnNPTeuOwqwdVfDxhkXddK4JQ5Ty/wQOFHRVWCQ+B6MMGJKpS/yLkxB/i8rUfTXchT8FgBTiDoenSsxdz6Nv6WBmIi+sRizy5303EBvfyAwiqJn5sF6NgHmF8w0Umcj4B8heoMXopaEo7hlHso63+dB/AlFza9irDWM5gbFPDJLQlnbAgofp4H7Fe5lTht5mTyNopbdnMSLWNbwKL2ZDK6g5GOEkUvbh6AY0MDEwFguVT6rFW+/EGnBs02vYdxCUaUaG5ltRFmHleMnXExvM/YqD++PvPv7seTYOvaIZOQcDeU2eStbKPlQwGmpIjBSLKUvnvpmBpPXUugYqe6lgy9hYeNGjE+nOSFWKToHKG2fw/HjnL3MnN/Jw+S7yPqyEIvqJmHONklZJY8Qb3f8GjPSPk7mAdpMsdMUdTYQu9yO/HM1mJARpmWwAIMB+Y0JLGw3nuNrWXDxTfaGXDICs2sAv4e1wMFgCZf4dk9j1bUU03v5brKoD7Fo70NahorElyTYOpJRcj0XiWtjELHYfT094xGb+rslu5E/KnrX00iv/4sT+wnyzsVgdJKa2IeIVANillr4r/ZhEIxKMmBx3Vik1i0m12JFcwZCppr7+sBWHfNemp9CQeN0jHTrBZ5gYGuWTEZ4+3vRKICHbwa5Gnnn93CVfyCbyBuw3Xzd2Qd0O2HvVRQ0ZSE0brATBJgC1T5hHmHBzA1hKLiwgL1iC/v9MW7rH8oBtrut8ACd0DVgE0bGM2AAmEN5a9isxiT5Y/mRcbzfqWQ1807TrJUUb4D7S+iqP0gBtu4tiMoO1uycEM1pzGxvpNRF8Ao+oSxlZa9oQJ2k6IADm7py0ALEb8Cl7aswMYdPJqH+XRCItPok7uFqjh8kW13ih8chFCDu/5+8Zk+zR4Rj/s5MXset/PazbuxwOaQCVP7KGe/jQbqkM3b3HEYB94f/1wLECX4Q1AqYFPAP8wViHklbMU4AAAAASUVORK5CYII=" InformativeScreenshot="3c5c67b275eb9ee3695ffe0eb4e53359.jpg" Selector="&lt;html app='msedge.exe' title='NY Real Estate - New York Homes For Sale | Zillow' /&gt;" Title="Rental Listings - 0 Rentals | Zillow" Url="https://www.zillow.com/homes/for_sale/ny_rb/" />
+              </uix:NApplicationCard.TargetApp>
+            </uix:NApplicationCard>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="1912, -8, 1936, 1096" BrowserType="Edge" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAVhSURBVFhHzVd7TJVlHH7O+YBzDndEUDNREPASBeJUZjpOiqJADAxcyqXkeuAcTStL1lrzkssaDK21tLY223Si/7jQlq2amVZLbVqYl8KwlsrCKbcQha/n/b6PzvHwcQBT17M9E7/393ue33v7vYC7gu9oYOnJKDjkHeR2/hypfHsg8I/wQuanM+HoOYBK+SbZxZ/rlW9i7L7BMgqIzvVDev1SzvokjeU76JBPcCxXiRGx9xTmkUDKzlFYJVfBLjf1M++jGFslv8zYcCXnnsAnCFiwKxYr5Q9ocqOfaX9eZ+wOJUfk/id4+0lI3WvlzD6j8C03I0/sZs4h5iZTw6ipDQNGniXrdjNyvyuiWIOb+HDYQI1nFC2hOSR4WQywvheGyu7NPFhXdEQHY69G9f8O+TK1NlEzlNqaiR7EYFC0hLnvTGXCLiZ3/CsyFDrkVvISl/4weYrfXLeMWt0fUXsyPYz9CxEfpleZUNG1EBW3DzOhxyXZE9t44M6j/O96LDn6PDkNWV9ZkH0kEaWtX3PcVaeH2l+gvCsFietMziK8A4DEqhBWXc6gsy4JA9MhX6TxAea8gvT9SZi10aSpOZHzfSrjzjDeuR0qzzCvhJ7BijeCJ3PmPcUcaHELdGcHBY/ynlcj/WAmHq8ZgVnr1QOrhzg7UHytUsnrr9VMzwJ6+7CASUFclrd1gvrYzNnugf1WGTL2PYb4NV4ImKC5eEBcxXiUXNvGfNGu++uWd71Fby6BWkCtTlAjl6oWK66kIWbZWERl8pCO09Q9YHIhkFaXgJLWOuZ36eiqLO96Q6+A2+R52G6tR2nbDPb1YIRN05Q1SCYDKcG6w4InD5nhE2hQvhvYb2LzjCi5Mpfb9DnNPTeuOwqwdVfDxhkXddK4JQ5Ty/wQOFHRVWCQ+B6MMGJKpS/yLkxB/i8rUfTXchT8FgBTiDoenSsxdz6Nv6WBmIi+sRizy5303EBvfyAwiqJn5sF6NgHmF8w0Umcj4B8heoMXopaEo7hlHso63+dB/AlFza9irDWM5gbFPDJLQlnbAgofp4H7Fe5lTht5mTyNopbdnMSLWNbwKL2ZDK6g5GOEkUvbh6AY0MDEwFguVT6rFW+/EGnBs02vYdxCUaUaG5ltRFmHleMnXExvM/YqD++PvPv7seTYOvaIZOQcDeU2eStbKPlQwGmpIjBSLKUvnvpmBpPXUugYqe6lgy9hYeNGjE+nOSFWKToHKG2fw/HjnL3MnN/Jw+S7yPqyEIvqJmHONklZJY8Qb3f8GjPSPk7mAdpMsdMUdTYQu9yO/HM1mJARpmWwAIMB+Y0JLGw3nuNrWXDxTfaGXDICs2sAv4e1wMFgCZf4dk9j1bUU03v5brKoD7Fo70NahorElyTYOpJRcj0XiWtjELHYfT094xGb+rslu5E/KnrX00iv/4sT+wnyzsVgdJKa2IeIVANillr4r/ZhEIxKMmBx3Vik1i0m12JFcwZCppr7+sBWHfNemp9CQeN0jHTrBZ5gYGuWTEZ4+3vRKICHbwa5Gnnn93CVfyCbyBuw3Xzd2Qd0O2HvVRQ0ZSE0brATBJgC1T5hHmHBzA1hKLiwgL1iC/v9MW7rH8oBtrut8ACd0DVgE0bGM2AAmEN5a9isxiT5Y/mRcbzfqWQ1807TrJUUb4D7S+iqP0gBtu4tiMoO1uycEM1pzGxvpNRF8Ao+oSxlZa9oQJ2k6IADm7py0ALEb8Cl7aswMYdPJqH+XRCItPok7uFqjh8kW13ih8chFCDu/5+8Zk+zR4Rj/s5MXset/PazbuxwOaQCVP7KGe/jQbqkM3b3HEYB94f/1wLECX4Q1AqYFPAP8wViHklbMU4AAAAASUVORK5CYII=" InformativeScreenshot="34536973c4dd0d0ddacc2b04bc7875c4.jpg" Selector="&lt;html app='msedge.exe' title='Zillow: Real Estate, Apartments, Mortgages &amp;amp; Home Values' /&gt;" Title="THE NEW 3" Url="https://www.zillow.com/" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
   </Sequence>
 </Activity>
